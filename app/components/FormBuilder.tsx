@@ -19,8 +19,6 @@ import { DraggableField } from './DraggableField';
 import { FieldSelector } from './FieldSelector';
 import { FormPreview } from './FormPreview';
 import { FormField, FormState } from '../types/form-builder';
-import { useActionState } from 'react';
-import { saveForm } from '../actions/form';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 
 type StyleType = 'tailwind' | 'css';
@@ -33,8 +31,6 @@ export function FormBuilder() {
   });
   const [showFileTypeModal, setShowFileTypeModal] = useState(false);
   const [styleType, setStyleType] = useState<StyleType>('tailwind');
-
-  const [state, formAction, isPending] = useActionState(saveForm, null);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
