@@ -1,13 +1,30 @@
 {
-  "name": "next-form-builders",
-  "version": "0.1.0",
-  "private": true,
+  "name": "react-form-builder",
+  "version": "1.0.0",
+  "description": "A modern, flexible form builder for React 19 with drag-and-drop functionality and real-time preview",
+  "private": false,
+  "author": "Kevin",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "form-builder",
+    "drag-and-drop",
+    "form-generator",
+    "react19",
+    "nextjs",
+    "typescript"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "jest && next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "prepare": "husky install",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -38,6 +55,13 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "ts-jest": "^29.1.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "husky": "^8.0.0",
+    "prettier": "^3.2.0",
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

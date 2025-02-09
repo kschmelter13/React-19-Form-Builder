@@ -4,7 +4,10 @@ import {
   ValidationResult,
 } from "../types/form-builder";
 
-function validateField(field: FormField, value: any): ValidationError | null {
+function validateField(
+  field: FormField,
+  value: FormDataEntryValue
+): ValidationError | null {
   const validation = field.validation || {};
 
   // Check required
@@ -24,7 +27,7 @@ function validateField(field: FormField, value: any): ValidationError | null {
   switch (field.type) {
     case "email":
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(value)) {
+      if (typeof value === "string" && !emailPattern.test(value)) {
         return {
           field: field.name,
           message:
@@ -64,7 +67,11 @@ function validateField(field: FormField, value: any): ValidationError | null {
     case "text":
     case "textarea":
     case "password":
-      if (validation.minLength && value.length < validation.minLength) {
+      if (
+        validation.minLength &&
+        typeof value === "string" &&
+        value.length < validation.minLength
+      ) {
         return {
           field: field.name,
           message:
@@ -72,7 +79,11 @@ function validateField(field: FormField, value: any): ValidationError | null {
             `${field.label} must be at least ${validation.minLength} characters`,
         };
       }
-      if (validation.maxLength && value.length > validation.maxLength) {
+      if (
+        validation.maxLength &&
+        typeof value === "string" &&
+        value.length > validation.maxLength
+      ) {
         return {
           field: field.name,
           message:
@@ -82,7 +93,7 @@ function validateField(field: FormField, value: any): ValidationError | null {
       }
       if (validation.pattern) {
         const pattern = new RegExp(validation.pattern);
-        if (!pattern.test(value)) {
+        if (typeof value === "string" && !pattern.test(value)) {
           return {
             field: field.name,
             message:
@@ -105,6 +116,13 @@ export function validateForm(
 
   fields.forEach((field) => {
     const value = formData.get(field.name);
+    if (value === null) {
+      errors.push({
+        field: field.name,
+        message: `${field.label} is required`,
+      });
+      return;
+    }
     const error = validateField(field, value);
     if (error) {
       errors.push(error);

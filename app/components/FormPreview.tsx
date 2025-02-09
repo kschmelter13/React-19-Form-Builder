@@ -139,18 +139,7 @@ export function FormPreview({ fields }: { fields: FormField[] }) {
         );
       })}
       
-      <div className="flex flex-col gap-4">
-        {errors.length > 0 && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-md">
-            <h4 className="text-sm font-medium text-red-800 mb-2">Please fix the following errors:</h4>
-            <ul className="list-disc list-inside text-sm text-red-700">
-              {errors.map((error, index) => (
-                <li key={index}>{error.message}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        
+      <div className="flex flex-col gap-4">   
         <button
           type="submit"
           className="w-auto min-w-[120px] px-5 py-2.5 text-white bg-black rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-colors"

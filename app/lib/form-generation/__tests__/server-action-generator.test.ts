@@ -1,5 +1,4 @@
 import { generateServerAction } from "../server-action-generator";
-import { FormField } from "../../../types/form-builder";
 import { Linter } from "eslint";
 import { basicFields, complexFields, multiLanguageFields } from "./test-fields";
 

@@ -36,7 +36,7 @@ export function DraggableField({ field, onDelete, onUpdate }: Props) {
     transition,
   };
 
-  const handleValidationChange = (key: ValidationKey, value: any) => {
+  const handleValidationChange = (key: ValidationKey, value: string | number | boolean) => {
     onUpdate({
       ...field,
       validation: {
@@ -217,7 +217,7 @@ export function DraggableField({ field, onDelete, onUpdate }: Props) {
                     <input
                       type="number"
                       value={field.validation?.minLength || ''}
-                      onChange={(e) => handleValidationChange('minLength', e.target.value ? parseInt(e.target.value) : undefined)}
+                      onChange={(e) => handleValidationChange('minLength', e.target.value ? parseInt(e.target.value) : 0)}
                       className="w-full px-3 py-1.5 text-sm border rounded-md shadow-sm focus:ring-2 focus:ring-black focus:border-black"
                     />
                   </div>
@@ -227,7 +227,7 @@ export function DraggableField({ field, onDelete, onUpdate }: Props) {
                     <input
                       type="number"
                       value={field.validation?.maxLength || ''}
-                      onChange={(e) => handleValidationChange('maxLength', e.target.value ? parseInt(e.target.value) : undefined)}
+                      onChange={(e) => handleValidationChange('maxLength', e.target.value ? parseInt(e.target.value) : 0)}
                       className="w-full px-3 py-1.5 text-sm border rounded-md shadow-sm focus:ring-2 focus:ring-black focus:border-black"
                     />
                   </div>
@@ -252,7 +252,7 @@ export function DraggableField({ field, onDelete, onUpdate }: Props) {
                     <input
                       type="number"
                       value={field.validation?.min || ''}
-                      onChange={(e) => handleValidationChange('min', e.target.value ? parseInt(e.target.value) : undefined)}
+                      onChange={(e) => handleValidationChange('min', e.target.value ? parseInt(e.target.value) : 0)}
                       className="w-full px-3 py-1.5 text-sm border rounded-md shadow-sm focus:ring-2 focus:ring-black focus:border-black"
                     />
                   </div>
@@ -262,7 +262,7 @@ export function DraggableField({ field, onDelete, onUpdate }: Props) {
                     <input
                       type="number"
                       value={field.validation?.max || ''}
-                      onChange={(e) => handleValidationChange('max', e.target.value ? parseInt(e.target.value) : undefined)}
+                      onChange={(e) => handleValidationChange('max', e.target.value ? parseInt(e.target.value) : 0)}
                       className="w-full px-3 py-1.5 text-sm border rounded-md shadow-sm focus:ring-2 focus:ring-black focus:border-black"
                     />
                   </div>
