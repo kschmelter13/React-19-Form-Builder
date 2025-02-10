@@ -34,10 +34,11 @@ export function generateValidationFunction(
   return `function validateForm(formData${
     languageType === "typescript" ? ": FormData" : ""
   })${languageType === "typescript" ? ": ValidationResult" : ""} {
-  const errors = [];
+  const errors${languageType === "typescript" ? ": ValidationError[]" : ""} = [];
 ${fields
   .map((field) => {
     const validation = field.validation || {};
+
     const checks = [];
     const hasValidation =
       validation.required ||
@@ -182,8 +183,8 @@ ${fields
     ) {
       checks.push(`
   if (${varName} && !new RegExp(${JSON.stringify(
-        validation.pattern
-      )}).test(${varName}.toString())) {
+    validation.pattern
+  )}).test(${varName}.toString())) {
     errors.push({
       field: '${field.name}',
       message: '${escapeString(

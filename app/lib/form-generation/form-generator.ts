@@ -19,6 +19,7 @@ export function generateFormCode(
 
   const imports = `'use client';
 
+import React from 'react';
 import { useActionState } from 'react';\n`;
 
   const validationTypes = generateValidationTypes(languageType);
